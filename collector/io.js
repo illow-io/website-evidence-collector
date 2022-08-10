@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
 
-function init(args) {
+function init(args, logger) {
   // creating the folder structure - io
   if (args.output) {
     if (fs.existsSync(args.output)) {
@@ -8,12 +8,10 @@ function init(args) {
         if (args.overwrite) {
           fs.emptyDirSync(args.output);
         } else {
-          console.error(
-            "Error: Output folder or file " +
-              args.output +
-              " is not empty. Delete/empty manually or call with --overwrite."
-          );
-          process.exit(1);
+          const error = "Error: Output folder or file " + args.output +
+            " is not empty. Delete/empty manually or call with --overwrite.";
+          logger.error(error);
+          throw new Error(error);
         }
       }
     } else {

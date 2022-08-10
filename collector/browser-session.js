@@ -163,7 +163,7 @@ async function createBrowserSession(browser_args, browser_logger) {
         }
       } catch (error) {
         logger.log("error", error.message, { type: "Browser" });
-        process.exit(2);
+        throw error;
       }
 
       return page_response;

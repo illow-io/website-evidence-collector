@@ -10,7 +10,7 @@ const { isFirstParty, getLocalStorage } = require("../lib/tools");
 
 async function collector(args, logger) {
   // create the root folder structure
-  collector_io.init(args);
+  collector_io.init(args, logger);
 
   // create the output hash...
   const output = await output_lib.createOutput(args);
